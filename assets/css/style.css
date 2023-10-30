@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap");
+:root {
+  --font-primary: "Cherry Bomb One", sans-serif;
+  --color-active: #EF2E88;
+  --color-deactive: #B3B9A0;
+  --color-switch: #F9FFE6;
+  --color-bg: #81D1A8;
+}
+
+*::before,
+*::after,
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  font-size: clamp(6px, 1vw, 10px);
+  background-color: var(--color-bg);
+  background-image: url("../images/noise.png");
+}
+
+body {
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  font-family: var(--font-primary);
+  font-weight: 400;
+}
+
+.switch {
+  --_switch-size: 40rem;
+  --_ball-size: 12.5rem;
+  --_gap: 4rem;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--_gap);
+  background-color: var(--color-switch);
+  cursor: pointer;
+  width: var(--_switch-size);
+  aspect-ratio: 606/289;
+  border-radius: 100rem;
+  box-shadow: inset 0 -0.7rem 1rem rgba(0, 0, 0, 0.25);
+}
+.switch::before, .switch::after {
+  font-size: 5rem;
+  text-transform: uppercase;
+  line-height: 0;
+}
+.switch::before {
+  content: "Off";
+  color: var(--color-deactive);
+  padding-left: 1.5rem;
+}
+.switch::after {
+  content: "On";
+  color: var(--color-active);
+  padding-right: 1.5rem;
+}
+.switch__input {
+  position: absolute;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  opacity: 0;
+}
+.switch__input:checked + .switch__ball {
+  animation: bounce 600ms ease-in normal forwards;
+}
+.switch__input:checked + .switch__ball .switch__ball__ring {
+  border-color: #97225A;
+}
+.switch__input:checked + .switch__ball .switch__ball__ring:nth-of-type(1) {
+  transform: translate(10%, -50%);
+}
+.switch__input:checked + .switch__ball .switch__ball__ring:nth-of-type(2) {
+  transform: translate(100%, -105%);
+}
+.switch__input:checked + .switch__ball .switch__ball__ring:nth-of-type(3) {
+  transform: translate(100%, 50%);
+}
+.switch__input:checked + .switch__ball .switch__ball__ring:nth-of-type(4) {
+  transform: translate(-80%, -105%);
+  transition-delay: 150ms;
+}
+.switch__input:not(:checked) + .switch__ball {
+  animation: bounce-back 600ms ease-out reverse backwards;
+}
+.switch__ball {
+  position: absolute;
+  display: inline-block;
+  width: var(--_ball-size);
+  aspect-ratio: 1;
+  border-radius: 100rem;
+  background-color: #8E8E8E;
+  transition: background 300ms ease-in-out;
+  box-shadow: 0 8rem 2rem rgba(0, 0, 0, 0.23);
+  background-image: radial-gradient(circle at 30% 30%, rgba(232, 255, 243, 0.35) 10%, rgba(0, 0, 0, 0.05), transparent, rgba(0, 0, 0, 0.9));
+  overflow: hidden;
+}
+.switch__ball__ring {
+  position: absolute;
+  display: inline-block;
+  width: 150%;
+  aspect-ratio: 1;
+  border: 1rem solid #575757;
+  top: 50%;
+  left: 50%;
+  border-radius: 100rem;
+  transition: all 500ms linear;
+}
+.switch__ball__ring:nth-of-type(1) {
+  transform: translate(-150%, -50%);
+}
+.switch__ball__ring:nth-of-type(2) {
+  transform: translate(-20%, -105%);
+}
+.switch__ball__ring:nth-of-type(3) {
+  transform: translate(-20%, 5%);
+}
+.switch__ball__ring:nth-of-type(4) {
+  transform: translate(-120%, -105%);
+}
+
+@keyframes bounce {
+  0% {
+    translate: 0;
+  }
+  40%, 60% {
+    scale: 0.7;
+    translate: calc((var(--_switch-size) - var(--_ball-size) - var(--_gap) * 2) / 2) 0;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.5);
+  }
+  100% {
+    translate: calc(var(--_switch-size) - var(--_ball-size) - var(--_gap) * 2) 0;
+    background-color: #F0358D;
+  }
+}
+@keyframes bounce-back {
+  0% {
+    translate: 0;
+  }
+  40%, 60% {
+    scale: 0.7;
+    translate: calc((var(--_switch-size) - var(--_ball-size) - var(--_gap) * 2) / 2) 0;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.5);
+  }
+  100% {
+    translate: calc(var(--_switch-size) - var(--_ball-size) - var(--_gap) * 2) 0;
+    background-color: #F0358D;
+  }
+}/*# sourceMappingURL=style.css.map */
